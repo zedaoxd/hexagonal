@@ -1,4 +1,4 @@
-package br.com.bruno.goodpraticies.adapter.dto;
+package br.com.bruno.goodpraticies.infrastructure.dto;
 
 import java.util.UUID;
 

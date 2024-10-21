@@ -1,16 +1,18 @@
 package br.com.bruno.goodpraticies.adapter.rest;
 
-import br.com.bruno.goodpraticies.adapter.dto.*;
-import br.com.bruno.goodpraticies.adapter.mapper.ClientMapper;
+import br.com.bruno.goodpraticies.infrastructure.dto.*;
+import br.com.bruno.goodpraticies.infrastructure.mapper.ClientMapper;
 import br.com.bruno.goodpraticies.core.port.ClientServicePort;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/client")
 @RequiredArgsConstructor
 public class ClientControllerAdapter implements ClientController {
 
@@ -18,6 +20,8 @@ public class ClientControllerAdapter implements ClientController {
     private final ClientMapper clientMapper;
 
     @Override
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public WrapperResponse<ClientCreateResponse> create(ClientCreateRequest request) {
         return WrapperResponse.<ClientCreateResponse>builder()
                 .data(clientMapper.toResponse(clientServicePort.create(clientMapper.toDomain(request))))
@@ -27,7 +31,9 @@ public class ClientControllerAdapter implements ClientController {
     }
 
     @Override
-    public WrapperResponse<ClientUpdateResponse> update(UUID id, ClientUpdateRequest request) {
+    @PutMapping("/{id}")
+    public WrapperResponse<ClientUpdateResponse> update(@PathVariable @Valid UUID id,
+                                                        @RequestBody @Valid ClientUpdateRequest request) {
         return WrapperResponse.<ClientUpdateResponse>builder()
                 .data(clientMapper.toResponseUpdate(clientServicePort.update(clientMapper.toDomain(request), id)))
                 .status(HttpStatus.OK.value())
@@ -36,6 +42,7 @@ public class ClientControllerAdapter implements ClientController {
     }
 
     @Override
+    @GetMapping
     public WrapperResponse<List<ClientFindAllResponse>> findAll() {
         return WrapperResponse.<List<ClientFindAllResponse>>builder()
                 .data(clientMapper.toResponse(clientServicePort.findAll()))
@@ -45,7 +52,8 @@ public class ClientControllerAdapter implements ClientController {
     }
 
     @Override
-    public WrapperResponse<ClientFindByIdResponse> findById(UUID id) {
+    @GetMapping("/{id}")
+    public WrapperResponse<ClientFindByIdResponse> findById(@PathVariable @Valid UUID id) {
         return WrapperResponse.<ClientFindByIdResponse>builder()
                 .data(clientMapper.toResponseFindById(clientServicePort.findById(id)))
                 .status(HttpStatus.OK.value())
@@ -54,7 +62,9 @@ public class ClientControllerAdapter implements ClientController {
     }
 
     @Override
-    public WrapperResponse<Void> delete(UUID id) {
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public WrapperResponse<Void> delete(@PathVariable @Valid UUID id) {
         clientServicePort.delete(id);
         return WrapperResponse.<Void>builder()
                 .data(null)

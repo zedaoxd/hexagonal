@@ -1,6 +1,6 @@
 package br.com.bruno.goodpraticies.adapter.repository;
 
-import br.com.bruno.goodpraticies.adapter.mapper.ClientMapper;
+import br.com.bruno.goodpraticies.infrastructure.mapper.ClientMapper;
 import br.com.bruno.goodpraticies.core.domain.Client;
 import br.com.bruno.goodpraticies.core.port.ClientRepositoryPort;
 import lombok.RequiredArgsConstructor;

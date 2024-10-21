@@ -1,4 +1,4 @@
-package br.com.bruno.goodpraticies.adapter.entity;
+package br.com.bruno.goodpraticies.infrastructure.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

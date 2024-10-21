@@ -1,6 +1,6 @@
 package br.com.bruno.goodpraticies.adapter.repository;
 
-import br.com.bruno.goodpraticies.adapter.entity.ClientEntity;
+import br.com.bruno.goodpraticies.infrastructure.entity.ClientEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,11 +1,10 @@
-package br.com.bruno.goodpraticies.adapter.mapper;
+package br.com.bruno.goodpraticies.infrastructure.mapper;
 
-import br.com.bruno.goodpraticies.adapter.dto.*;
-import br.com.bruno.goodpraticies.adapter.entity.ClientEntity;
+import br.com.bruno.goodpraticies.infrastructure.entity.ClientEntity;
 import br.com.bruno.goodpraticies.core.domain.Client;
+import br.com.bruno.goodpraticies.infrastructure.dto.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
