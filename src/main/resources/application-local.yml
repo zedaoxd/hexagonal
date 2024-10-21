@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: GoodPractices
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+logging:
+  level:
+    org.flywaydb.core: DEBUG
+    org.hibernate: DEBUG
